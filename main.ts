@@ -517,7 +517,7 @@ function parseV4a(lines: string[]): VSection[] {
       while (i < last && !isHeader(lines[i]!) && lines[i]!.trim() !== '*** End Patch') {
         const l = lines[i]!;
         if (l.startsWith('+')) raw.push({ text: l.slice(1), blank: false });
-        else if (l === '') raw.push({ text: '', blank: true });
+        else if (blank(l)) raw.push({ text: '', blank: true });
         else throw new Exit2(`error: parse ${i + 1}`);
         i += 1;
       }
